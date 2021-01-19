@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { BandsComponent } from './bands/bands.component';
 import { BandListComponent } from './bands/band-list/band-list.component';
+import { BandDetailComponent } from './bands/band-detail/band-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     BandsComponent,
-    BandListComponent
+    BandListComponent,
+    BandDetailComponent
   ],
   imports: [
     BrowserModule,
