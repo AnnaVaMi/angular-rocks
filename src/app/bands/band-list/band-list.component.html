@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let band of bands">
-      <a href="#">
+      <a routerLink="/detail/{{ band.id }}">
         <div class="card card-blog fill-light">
           <div class="card-image">
             <img src="{{ band.imagePath }}" alt="{{ band.name }}">
@@ -14,5 +14,3 @@
     </div>
   </div>
 </div>
-
-
