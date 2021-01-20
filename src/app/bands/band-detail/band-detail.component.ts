@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 
+import BandList from 'src/assets/json/bandas.json';
 import { Band } from '../band.model';
 
 @Component({
@@ -11,7 +12,8 @@ import { Band } from '../band.model';
   styleUrls: ['./band-detail.component.css']
 })
 export class BandDetailComponent implements OnInit {
-  band: Band;
+  bandList: any = BandList;
+  bandDetail: Band;
   id: number;
   private routeSub: Subscription;
   
@@ -20,7 +22,7 @@ export class BandDetailComponent implements OnInit {
   }
 
   getVideoIframe(url) {
-    var video, results;
+    let video, results;
  
     if (url === null) {
         return '';
@@ -29,19 +31,17 @@ export class BandDetailComponent implements OnInit {
     video   = (results === null) ? url : results[1];
  
     return this._sanitizer.bypassSecurityTrustResourceUrl(video);   
-}
+  }
 
-ngOnInit(): void {
-  this.routeSub = this.route.params.subscribe(params => {
-    this.id = params['id'];
-    this.band = new Band(this.id,
-      'KISS', 
-      'Kiss es una banda estadounidense de rock formada en Nueva York en enero de 1973 por el bajista Gene Simmons y el guitarrista Paul Stanley, a los que más tarde se unirían el batería Peter Criss y el guitarrista Ace Frehley.​', 
-      'https://gcdn.emol.cl/curiosidades/files/2020/04/Kiss.jpg', 
-      'https://www.youtube.com/embed/sOnqjkJTMaA');
-  });
-}
+  ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe(params => {
+      this.id = params['id'];
+      let bandDetail = this.bandList.find(item => item.id == this.id);
+      this.bandDetail = new Band(bandDetail.id, bandDetail.name, bandDetail.description, bandDetail.imagePath, bandDetail.videoPath);
+      console.log(this.bandDetail.videoPath);
+    });
+  }
 
-ngOnDestroy() { this.routeSub.unsubscribe(); }
+  ngOnDestroy() { this.routeSub.unsubscribe(); }
 
 }
