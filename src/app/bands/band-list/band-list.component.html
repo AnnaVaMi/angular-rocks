@@ -1,16 +1,19 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
-      <div class="input-group mt-5">
+      <div class="input-group mt-5 input-wrap">
+        <div class="input-group-text input-group-prepend">
+          <i class="fa fa-search fa-lg"></i>
+        </div>
         <input type="search" class="form-control" placeholder="Encuentra una banda" [(ngModel)]="bandNameFilter">
       </div>
     </div>
     <div class="col-md-6">
-      <div class="input-group mt-5">
+      <div class="input-group mt-5 input-wrap">
         <div class="input-group-prepend">
-          <button class="btn btn-success" type="button" (click)="addNewBand()">Añadir nueva banda</button>
+          <button class="btn btn-success" type="button" (click)="addNewBand()"><i class="fa fa-plus fa-lg"></i></button>
         </div>
-        <input type="text" class="form-control" [(ngModel)]="newBand">
+        <input type="text" class="form-control add-band" placeholder="Añadir nueva banda" [(ngModel)]="newBand">
       </div>
     </div>
   </div>

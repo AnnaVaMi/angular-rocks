@@ -10,7 +10,7 @@ import BandList from 'src/assets/json/bandas.json';
 })
 export class BandListComponent implements OnInit {
   bandList: any = BandList;
-  bandsId: number[] = [2,6];
+  bandsId: number[] = [2,4,6];
   actualBands: Band[]=[];
   newBand: string;
   bandNameFilter: string;
