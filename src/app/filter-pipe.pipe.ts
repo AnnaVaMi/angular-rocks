@@ -5,11 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
+  // Filtrar las bandas por nombre
   transform(bands: any, input: any): any {
-   if (input) {
-     return bands.filter(band => band.name.toLowerCase().indexOf(input.toLowerCase()) >= 0);
-   } else {
-     return bands;
-   }
+    if (input) {
+      return bands.filter(band => band.name.toLowerCase().indexOf(input.toLowerCase()) >= 0);
+    } 
+    else {
+      return bands;
+    }
   }
 }

@@ -12,15 +12,16 @@ import { Band } from '../band.model';
   styleUrls: ['./band-detail.component.css']
 })
 export class BandDetailComponent implements OnInit {
-  bandList: any = BandList;
-  bandDetail: Band;
-  id: number;
-  private routeSub: Subscription;
+  bandList: any = BandList;        // listado de todas las bandas (BD)
+  bandDetail: Band;                // banda a mostrar
+  id: number;                      // id de la banda a mostrar
+  private _routeSub: Subscription; // informacion de la url para obtener el id de la banda
   
   constructor(private _sanitizer: DomSanitizer, private _route: ActivatedRoute) { 
     
   }
 
+  // Sanitizar la url de youtube para poder mostrar el video
   getVideoIframe(url) {
     let video, results;
  
@@ -33,14 +34,15 @@ export class BandDetailComponent implements OnInit {
     return this._sanitizer.bypassSecurityTrustResourceUrl(video);   
   }
 
+  // Obtener el id de la banda pasado por url para mostrar su informacion
   ngOnInit(): void {
-    this.routeSub = this._route.params.subscribe(params => {
+    this._routeSub = this._route.params.subscribe(params => {
       this.id = params['id'];
       let bandDetail = this.bandList.find(item => item.id == this.id);
       this.bandDetail = new Band(bandDetail.id, bandDetail.name, bandDetail.description, bandDetail.imagePath, bandDetail.videoPath);
     });
   }
 
-  ngOnDestroy() { this.routeSub.unsubscribe(); }
+  ngOnDestroy() { this._routeSub.unsubscribe(); }
 
 }
