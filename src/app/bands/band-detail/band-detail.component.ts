@@ -17,7 +17,7 @@ export class BandDetailComponent implements OnInit {
   id: number;
   private routeSub: Subscription;
   
-  constructor(private _sanitizer: DomSanitizer, private route: ActivatedRoute) { 
+  constructor(private _sanitizer: DomSanitizer, private _route: ActivatedRoute) { 
     
   }
 
@@ -34,11 +34,10 @@ export class BandDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe(params => {
+    this.routeSub = this._route.params.subscribe(params => {
       this.id = params['id'];
       let bandDetail = this.bandList.find(item => item.id == this.id);
       this.bandDetail = new Band(bandDetail.id, bandDetail.name, bandDetail.description, bandDetail.imagePath, bandDetail.videoPath);
-      console.log(this.bandDetail.videoPath);
     });
   }
 

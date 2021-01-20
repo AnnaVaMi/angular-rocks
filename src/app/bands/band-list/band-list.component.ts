@@ -16,20 +16,27 @@ export class BandListComponent implements OnInit {
   bandNameFilter: string;
 
   constructor() {
-    for(let id of this.bandsId) {
-      let band = this.bandList.find(item => item.id == id);
-      let new_band = new Band(band.id, band.name, band.description, band.imagePath, band.videoPath);
-      this.actualBands.push(new_band);
+    if (!sessionStorage.getItem('actualBands')) {
+      for(let id of this.bandsId) {
+        let band = this.bandList.find(item => item.id == id);
+        let new_band = new Band(band.id, band.name, band.description, band.imagePath, band.videoPath);
+        this.actualBands.push(new_band);
+      }
+    }
+    else {
+      this.actualBands = this.actualBands = JSON.parse(sessionStorage.getItem('actualBands'));
     }
   }
 
   addNewBand() {
-    let name = this.newBand
+    let name = this.newBand;
     let band = this.bandList.find(item => item.name.toLowerCase() == name.toLowerCase());
     if(band) {
       let new_band = new Band(band.id, band.name, band.description, band.imagePath, band.videoPath);
       this.actualBands.find(item => item.id == band.id) ? alert('¡Ya tienes esta banda en tu lista!') : this.actualBands.push(new_band);
       this.bandsId.push(band.id);
+      this.newBand = '';
+      sessionStorage.setItem('actualBands', JSON.stringify(this.actualBands));
     }
     else {
       alert('¡Lo siento, banda no encontrada!');
@@ -41,11 +48,13 @@ export class BandListComponent implements OnInit {
       const index = this.actualBands.indexOf(this.actualBands.find(item => item.id == id));
       if (index > -1) {
         this.actualBands.splice(index, 1);
+        sessionStorage.setItem('actualBands', JSON.stringify(this.actualBands));
       }
     }
   }
 
   ngOnInit(): void {
+    
   }
 
 }
