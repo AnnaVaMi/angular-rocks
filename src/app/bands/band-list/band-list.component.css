@@ -1,7 +1,14 @@
 /* Estilos de la lista de bandas */
 
-.col-md-4.col-lg-3  {
-  margin-top: 100px 
+h1 {
+  font-family: "Arial Black", Gadget, sans-serif;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  text-align: center;
+  font-size: 40px;
+  text-transform: uppercase;
+  color: #4b4b4b;
+  text-shadow: 0 1px 0 white;
 }
 
 a {
@@ -12,6 +19,10 @@ a {
 a:hover {
   text-decoration: none;
   color: #000000;
+}
+
+.col-md-4.col-lg-3  {
+  margin-top: 100px 
 }
 
 .card {
