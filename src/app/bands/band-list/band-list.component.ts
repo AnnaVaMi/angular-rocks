@@ -13,6 +13,7 @@ export class BandListComponent implements OnInit {
   bandsId: number[] = [2,6];
   actualBands: Band[]=[];
   newBand: string;
+  bandNameFilter: string;
 
   constructor() {
     for(let id of this.bandsId) {

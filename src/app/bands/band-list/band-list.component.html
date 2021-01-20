@@ -1,20 +1,21 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
-      
+      <div class="input-group mt-5">
+        <input type="search" class="form-control" placeholder="Encuentra una banda" [(ngModel)]="bandNameFilter">
+      </div>
     </div>
     <div class="col-md-6">
       <div class="input-group mt-5">
         <div class="input-group-prepend">
           <button class="btn btn-success" type="button" (click)="addNewBand()">Añadir nueva banda</button>
         </div>
-        <input [(ngModel)]="newBand" type="text" class="form-control">
+        <input type="text" class="form-control" [(ngModel)]="newBand">
       </div>
     </div>
   </div>
-  
   <div class="row">
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let band of actualBands">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let band of actualBands | FilterPipe: bandNameFilter">
       <a routerLink="/detail/{{ band.id }}">
         <div class="card card-blog fill-light">
           <div class="card-image">
