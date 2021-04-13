@@ -10,6 +10,8 @@ En la aplicación se puede hacer lo siguiente:
 - Eliminar una banda del listado.
 - Añadir una banda al listado.
 
+No hay persistencia de datos, las bandas se almacenan durate la sesión.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.5.
 
 ## Node modules
